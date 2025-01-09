@@ -90,16 +90,87 @@ let myDishes = [
     },
 ];
 
+function renderRestaurantSelection() {
+    let selectRestaurantRef = document.getElementById('restaurant_selection');
+    let italianOrderSectionRef = document.getElementById(`order_box${[0]}`);
+    let chineseOrderSectionRef = document.getElementById(`order_box${[1]}`);
+    let steakHouseOrderSectionRef = document.getElementById(`order_box${[2]}`);
+    italianOrderSectionRef.classList.add('d_none');
+    chineseOrderSectionRef.classList.add('d_none');
+    steakHouseOrderSectionRef.classList.add('d_none');
+    selectRestaurantRef.classList.remove('d_none');
+    selectRestaurantRef.innerHTML = getRenderRestaurantSelectionTemplate();
+    
+}
+
 function renderOrderBox() {
-    let orderRestaurantRef = document.getElementById('order_selection');
+    let orderRestaurantRef = document.getElementById('order_section');
     orderRestaurantRef.innerHTML = "";
     for (let restaurantIndex = 0; restaurantIndex < myDishes.length; restaurantIndex++) {
-        orderRestaurantRef.innerHTML += getRenderOrderrestaurantTemplate(restaurantIndex);
+        orderRestaurantRef.innerHTML += getRenderOrderRestaurantTemplate(restaurantIndex);
             
-        let orderDishRef = document.getElementById(`order_dishes${restaurantIndex}`)
+        let orderDishRef = document.getElementById(`order_dishes${restaurantIndex}`);
+        orderDishRef.innerHTML = "";
         for (let dishesIndex = 0; dishesIndex < myDishes[restaurantIndex].dishes.length; dishesIndex++) {
-            orderDishRef.innerHTML += getRenderDishTemplate(restaurantIndex, dishesIndex);          
+            orderDishRef.innerHTML += getRenderDishTemplate(restaurantIndex, dishesIndex);              
         }
     }
+}
+
+function renderItalianOrderSection() {
+    let italianOrderSectionRef = document.getElementById(`order_box${[0]}`);
+    let chineseOrderSectionRef = document.getElementById(`order_box${[1]}`);
+    let steakHouseOrderSectionRef = document.getElementById(`order_box${[2]}`);
+    let selectRestaurantSection = document.getElementById('restaurant_selection');
+    italianOrderSectionRef.classList.remove('d_none');
+    chineseOrderSectionRef.classList.add('d_none');
+    steakHouseOrderSectionRef.classList.add('d_none');
+    selectRestaurantSection.classList.add('d_none');
+}
+
+function renderChineseOrderSection() {
+    let italianOrderSectionRef = document.getElementById(`order_box${[0]}`);
+    let chineseOrderSectionRef = document.getElementById(`order_box${[1]}`);
+    let steakHouseOrderSectionRef = document.getElementById(`order_box${[2]}`);
+    let selectRestaurantSection = document.getElementById('restaurant_selection');
+    italianOrderSectionRef.classList.add('d_none');
+    chineseOrderSectionRef.classList.remove('d_none');
+    steakHouseOrderSectionRef.classList.add('d_none');
+    selectRestaurantSection.classList.add('d_none');
+}
+
+function renderSteakHouseOrderSection() {
+    let italianOrderSectionRef = document.getElementById(`order_box${[0]}`);
+    let chineseOrderSectionRef = document.getElementById(`order_box${[1]}`);
+    let steakHouseOrderSectionRef = document.getElementById(`order_box${[2]}`);
+    let selectRestaurantSection = document.getElementById('restaurant_selection');
+    italianOrderSectionRef.classList.add('d_none');
+    chineseOrderSectionRef.classList.add('d_none');
+    steakHouseOrderSectionRef.classList.remove('d_none');
+    selectRestaurantSection.classList.add('d_none');
+}
+
+function renderRespMenu() {
+    let respMenuRef = document.getElementById('resp_menu');
+    respMenuRef.classList.toggle('resp_menu_closed');
+    respMenuRef.innerHTML = getRenderRespMenuTemplate();
+}
+
+function closeRespMenu() {
+    let closeRespMenuRef = document.getElementById('resp_menu');
+    closeRespMenuRef.classList.add('resp_menu_closed');
+}
+
+function renderBag() {
+    let bagRef = document.getElementById('bag');
+    bagRef.classList.toggle('bag_box_closed');
+    let moveOrderRef = document.getElementById('order_section');
+    moveOrderRef.classList.toggle('move_left_selection');
+    bagRef.innerHTML = getRenderBag();
+}
+
+function closeBag() {
+    let closeBagRef = document.getElementById('bag');
+    closeBagRef.classList.add('bag_box_closed');
 }
 

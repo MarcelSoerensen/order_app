@@ -1,6 +1,38 @@
-function getRenderOrderrestaurantTemplate(restaurantIndex) {
+function getRenderRestaurantSelectionTemplate() {
     return /*html*/`
-    <div class="order_box">
+    
+    <div class="restaurant_selection_section">   
+        <h1>Wo möchtest du bestellen..?</h1>
+        <div class="restaurant_selection_box">
+            <div class="restaurant_selection_button">
+                <img class="restaurant_selection_symbol" onclick="renderItalianOrderSection(), closeRespMenu()" src="${myDishes[0].symbol}" alt="">
+                <div>
+                    <h2>${myDishes[0].restaurant}</h2>
+                    <p>${myDishes[0].subtitel}</p> 
+                </div>  
+            </div>
+            <div class="restaurant_selection_button">
+                <img class="restaurant_selection_symbol" onclick="renderChineseOrderSection(), closeRespMenu()" src="${myDishes[1].symbol}" alt="">
+                <div>
+                    <h2>${myDishes[1].restaurant}</h2>
+                    <p>${myDishes[1].subtitel}</p> 
+                </div>  
+            </div>
+            <div class="restaurant_selection_button">
+                <img class="restaurant_selection_symbol" onclick="renderSteakHouseOrderSection(), closeRespMenu()" src="${myDishes[2].symbol}" alt="">
+                <div>
+                    <h2>${myDishes[2].restaurant}</h2>
+                    <p>${myDishes[2].subtitel}</p> 
+                </div>
+            </div>  
+        </div>
+    </div>
+    `    
+}
+
+function getRenderOrderRestaurantTemplate(restaurantIndex) {
+    return /*html*/`
+    <div class="order_box d_none" id="order_box${restaurantIndex}">
         <div class="order_restaurant">
             <img class="restaurant_img" src="${myDishes[restaurantIndex].image}" alt="">
             <div class="restaurant_symbol_background">
@@ -15,6 +47,7 @@ function getRenderOrderrestaurantTemplate(restaurantIndex) {
             </div>
         </div>  
         <div id="order_dishes${restaurantIndex}"></div>  
+        <div class="bottom_space"></div>
     </div>
     `    
 }
@@ -34,3 +67,35 @@ function getRenderDishTemplate(restaurantIndex, dishesIndex) {
         </div>
     `
 }
+
+function getRenderRespMenuTemplate() {
+    return /*html*/`
+        <div class="resp_menu_our_restaurants">
+            <h2>Unsere Restaurants</h2>
+            <div class="logo">
+                <img src="./assets/icons/apple-touch-icon.png" alt="">
+            </div>
+        </div>
+        <div class="resp_menu_separator">
+            <h3 onclick="renderItalianOrderSection(), closeRespMenu()">${myDishes[0].restaurant}</h3>
+            <h3 onclick="renderChineseOrderSection(), closeRespMenu()">${myDishes[1].restaurant}</h3>
+            <h3 onclick="renderSteakHouseOrderSection(), closeRespMenu()">${myDishes[2].restaurant}</h3>
+        </div>
+        <div class="resp_menu_separator">
+            <h3 onclick="renderRestaurantSelection()">Übersicht</h3>  
+        </div>
+    `
+}
+
+function getRenderBag() {
+    return /*html*/`
+        <div class="bag_headline">
+            <h2>Warenkorb</h2>
+            <div class="logo">
+                <img src="./assets/icons/apple-touch-icon.png" alt="">
+            </div>
+        </div>
+
+    `
+}
+

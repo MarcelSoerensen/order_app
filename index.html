@@ -9,16 +9,21 @@
     <script src="./script.js"></script>
     <script src="./scripts/templates.js"></script>
 </head>
-<body onload="renderOrderBox()">
+<body onload="renderOrderBox(), renderRestaurantSelection()">
     <header>
-        <img class="app_icon" src="./assets/icons/Bestell App- Logo.svg" alt="">
-        <img class="header_icon" src="./assets/icons/menu-svgrepo-com.svg" alt="">
+        <img class="app_icon" onclick="renderRestaurantSelection(), closeRespMenu()" src="./assets/icons/Bestell App- Logo.svg" alt="">
+        <div class="header_menu_icons">
+            <img onclick="renderBag(), closeRespMenu()" class="header_bag_icon" src="./assets/icons/bag-svgrepo-com.svg" alt="">
+            <img onclick="renderRespMenu()" class="header_menu_icon" src="./assets/icons/menu-svgrepo-com.svg" alt="">
+        </div>
     </header>
-
-    <div class="select_restaurant">
-       
+    <div class="max_width">
+        <section id="restaurant_selection" onclick="closeRespMenu()"></section>
+        <section id="order_section" onclick="closeRespMenu()"></section>
+        <div id="resp_menu" class="resp_menu_box resp_menu_closed" onclick="closeRespMenu()"></div>
+        <div id="bag" class="bag_box bag_box_closed"></div>
+        
     </div>
-    <div id="order_selection"></div>
     <footer>
         <p>
         Vectors and icons by <a href="https://github.com/lusaxweb/iconsax?ref=svgrepo.com" target="_blank">Iconsax</a> in MIT License via <a href="https://www.svgrepo.com/" target="_blank">SVG Repo</a>

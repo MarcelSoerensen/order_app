@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bestell App</title>
     <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+    
+    <link rel="stylesheet" href="styles/resp_menu.css">
+    <link rel="stylesheet" href="styles/bag.css">
     <link rel="stylesheet" href="style.css">
     <script src="./script.js"></script>
     <script src="./scripts/templates.js"></script>
 </head>
-<body onload="renderOrderBox(), renderRestaurantSelection()">
+<body onload="renderOrderSection(), renderRestaurantSelection()">
     <header>
         <img class="app_icon" onclick="renderRestaurantSelection(), closeRespMenu()" src="./assets/icons/Bestell App- Logo.svg" alt="">
         <div class="header_menu_icons">
-            <img onclick="renderBag(), closeRespMenu()" class="header_bag_icon" src="./assets/icons/bag-svgrepo-com.svg" alt="">
+            <img id="bag_icon" onclick="renderBag(), closeRespMenu()" class="header_bag_icon" src="./assets/icons/bag-svgrepo-com.svg" alt="">
             <img onclick="renderRespMenu()" class="header_menu_icon" src="./assets/icons/menu-svgrepo-com.svg" alt="">
         </div>
     </header>
@@ -22,7 +25,6 @@
         <section id="order_section" onclick="closeRespMenu()"></section>
         <div id="resp_menu" class="resp_menu_box resp_menu_closed" onclick="closeRespMenu()"></div>
         <div id="bag" class="bag_box bag_box_closed"></div>
-        
     </div>
     <footer>
         <p>

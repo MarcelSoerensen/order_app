@@ -1,0 +1,52 @@
+.resp_menu_box{
+    position: absolute;
+    position:fixed;
+    display: flex;
+    flex-direction: column;
+    top: 72px;
+    bottom: 72px;
+    right: 0;
+    transition: all 250ms ease-in-out;
+    border-left: 1px solid rgba(255, 127, 0, 0.5);
+    box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.49);
+    backdrop-filter: blur(20px);
+    background-color: rgba(255, 127, 0, 0.4);
+    width: 300px;
+    padding: 0 16px;
+    z-index: 1000;    
+}
+
+.resp_menu_separator{  
+    padding: 8px 0 8px 0;  
+    background-color: rgba(0,0,0, 0);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 4px -4px rgba(255, 127, 0, 0.8);
+}
+
+.resp_menu_our_restaurants{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 16px 0 16px 16px;
+    background-color: rgba(0,0,0, 0); 
+}
+
+.resp_menu_our_restaurants{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 4px -4px rgba(255, 127, 0, 0.8);
+}
+
+.resp_menu_box h3{
+    padding: 8px 16px ;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 127, 0, 0);
+    cursor: pointer;
+}
+.resp_menu_box h3:hover{
+    background-color: rgba(255, 127, 0, 0.5);
+    border: 1px solid rgba(255, 127, 0, 0.7);
+}
+
+.resp_menu_closed{
+    transform: translateX(102%);
+}

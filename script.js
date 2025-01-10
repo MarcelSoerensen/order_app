@@ -95,15 +95,18 @@ function renderRestaurantSelection() {
     let italianOrderSectionRef = document.getElementById(`order_box${[0]}`);
     let chineseOrderSectionRef = document.getElementById(`order_box${[1]}`);
     let steakHouseOrderSectionRef = document.getElementById(`order_box${[2]}`);
+    let bagRef = document.getElementById('bag');
+    let bagIconRef = document.getElementById('bag_icon');
+    steakHouseOrderSectionRef.classList.add('d_none');
     italianOrderSectionRef.classList.add('d_none');
     chineseOrderSectionRef.classList.add('d_none');
-    steakHouseOrderSectionRef.classList.add('d_none');
     selectRestaurantRef.classList.remove('d_none');
-    selectRestaurantRef.innerHTML = getRenderRestaurantSelectionTemplate();
-    
+    bagRef.classList.add('d_none');
+    bagIconRef.classList.add('d_none');
+    selectRestaurantRef.innerHTML = getRenderRestaurantSelectionTemplate(); 
 }
 
-function renderOrderBox() {
+function renderOrderSection() {
     let orderRestaurantRef = document.getElementById('order_section');
     orderRestaurantRef.innerHTML = "";
     for (let restaurantIndex = 0; restaurantIndex < myDishes.length; restaurantIndex++) {
@@ -122,10 +125,14 @@ function renderItalianOrderSection() {
     let chineseOrderSectionRef = document.getElementById(`order_box${[1]}`);
     let steakHouseOrderSectionRef = document.getElementById(`order_box${[2]}`);
     let selectRestaurantSection = document.getElementById('restaurant_selection');
+    let bagIconRef = document.getElementById('bag_icon');
+    let bagRef = document.getElementById('bag');
     italianOrderSectionRef.classList.remove('d_none');
     chineseOrderSectionRef.classList.add('d_none');
     steakHouseOrderSectionRef.classList.add('d_none');
     selectRestaurantSection.classList.add('d_none');
+    bagRef.classList.remove('d_none');
+    bagIconRef.classList.remove('d_none'); 
 }
 
 function renderChineseOrderSection() {
@@ -133,10 +140,14 @@ function renderChineseOrderSection() {
     let chineseOrderSectionRef = document.getElementById(`order_box${[1]}`);
     let steakHouseOrderSectionRef = document.getElementById(`order_box${[2]}`);
     let selectRestaurantSection = document.getElementById('restaurant_selection');
+    let bagRef = document.getElementById('bag');
+    let bagIconRef = document.getElementById('bag_icon');
     italianOrderSectionRef.classList.add('d_none');
     chineseOrderSectionRef.classList.remove('d_none');
     steakHouseOrderSectionRef.classList.add('d_none');
     selectRestaurantSection.classList.add('d_none');
+    bagRef.classList.remove('d_none');
+    bagIconRef.classList.remove('d_none');
 }
 
 function renderSteakHouseOrderSection() {
@@ -144,10 +155,14 @@ function renderSteakHouseOrderSection() {
     let chineseOrderSectionRef = document.getElementById(`order_box${[1]}`);
     let steakHouseOrderSectionRef = document.getElementById(`order_box${[2]}`);
     let selectRestaurantSection = document.getElementById('restaurant_selection');
+    let bagRef = document.getElementById('bag');
+    let bagIconRef = document.getElementById('bag_icon');
     italianOrderSectionRef.classList.add('d_none');
     chineseOrderSectionRef.classList.add('d_none');
     steakHouseOrderSectionRef.classList.remove('d_none');
     selectRestaurantSection.classList.add('d_none');
+    bagRef.classList.remove('d_none');
+    bagIconRef.classList.remove('d_none');
 }
 
 function renderRespMenu() {
@@ -169,8 +184,7 @@ function renderBag() {
     bagRef.innerHTML = getRenderBag();
 }
 
-function closeBag() {
-    let closeBagRef = document.getElementById('bag');
-    closeBagRef.classList.add('bag_box_closed');
+function closBag() {
+
 }
 

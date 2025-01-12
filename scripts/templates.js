@@ -48,24 +48,48 @@ function getRenderOrderRestaurantTemplate(restaurantIndex) {
             <div id="order_dishes${restaurantIndex}"></div>  
             <div class="bottom_space"></div>
         </div>
-
     `    
 }
 
 function getRenderDishTemplate(restaurantIndex, dishesIndex) {
     return /*html*/`
         <div class="order_dishes">
-            <div class="order_dishes_description">
+            <div class="order_dishes_content">
                 <h3>${myDishes[restaurantIndex].dishes[dishesIndex].name}</h3>
                 <p>${myDishes[restaurantIndex].dishes[dishesIndex].description}</p>
                 <h3 class="price" >${myDishes[restaurantIndex].dishes[dishesIndex].price.toFixed(2) + " €"}</h3>
             </div>
-            <div class="add_button">
-                <img  src="./assets/icons/add-svgrepo-com.svg" alt="">
+            <div class="order_add_button">
+                <img onclick="addDish(${restaurantIndex}, ${dishesIndex})" src="./assets/icons/add-svgrepo-com.svg" alt="">
             </div>
         </div>
     `
 }
+
+function getRenderEmptyBasketTemplate() {
+    return /*html*/`
+        <div class="basket_head">
+            <h2>Warenkorb</h2>
+        </div>
+        <div id="basket_content" class="basket_content">
+            <div id="basket_empty" class="basket_empty">
+                <p>dein Warenkorb ist noch leer</p>
+            </div>
+        </div> 
+    `
+}
+function getRenderFilledBasketTemplate(restaurantIndex, dishesIndex) {
+    return /*html*/`
+        <div class="basket_dish">
+            <p>${myDishes[restaurantIndex].dishes[dishesIndex].name}</p>
+            <div class="basket_edit">
+                <img class="basket_buttons" onclick="subDish(${restaurantIndex}, ${dishesIndex})" src="assets/icons/minus-svgrepo-com.svg" alt="">
+                <div id="counter${dishesIndex}">${myDishes[restaurantIndex].dishes[dishesIndex].amount}</div>
+                <img class="basket_buttons" onclick="addDish(${restaurantIndex}, ${dishesIndex})" src="./assets/icons/add-svgrepo-com.svg" alt=""> 
+            </div>
+        </div>
+    `
+}    
 
 function getRenderRespMenuTemplate() {
     return /*html*/`
@@ -86,11 +110,5 @@ function getRenderRespMenuTemplate() {
     `
 }
 
-function getRenderBag() {
-    return /*html*/`
-        <div class="bag_headline">
-            <h2>Warenkorb</h2>
-        </div>
-    `
-}
+
 

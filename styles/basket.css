@@ -1,0 +1,78 @@
+.basket_box{
+    position: absolute;
+    position:fixed;
+    display: flex;
+    flex-direction: column;
+    top: 72px;
+    bottom: 72px;
+    right: 0;
+    transition: all 250ms ease-in-out;
+    border-left: 1px solid rgba(40, 40, 40, 0.6);
+    box-shadow: 0px 4px 8px 0 rgba(255, 127, 0, 0.2);
+    background-color: rgba(90, 90, 90, 1);
+    width: 30%;
+    z-index: 999; 
+}
+
+.basket_head{
+    margin: 16px 10% 0px 7.5%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(40, 40, 40, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+}
+
+.basket_content{
+    margin: 16px 10% 16px 7.5%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(40, 40, 40, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+}
+
+.basket_empty{
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.basket_dish{
+    
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(40, 40, 40, 0.3);
+}
+
+.basket_edit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.basket_buttons{
+    height: 24px;
+    border-radius: 50%;
+    filter: invert(52%) sepia(97%) saturate(976%) hue-rotate(341deg) brightness(101%) contrast(101%);
+    background-color: rgba( 0,0,0,0); 
+    cursor: pointer; 
+}
+
+.basket_buttons:hover{
+    background-color: rgba(255, 127, 0, 0.2);
+}
+
+.basket_box_closed{
+    transform: translateX(102%);
+}

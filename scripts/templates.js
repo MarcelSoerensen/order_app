@@ -26,7 +26,7 @@ function getRenderRestaurantSelectionTemplate() {
                 </div>  
             </div>
         </div>
-    `
+    `;
 }
 
 function getRenderOrderRestaurantTemplate(restaurantIndex) {
@@ -48,7 +48,7 @@ function getRenderOrderRestaurantTemplate(restaurantIndex) {
             <div id="order_dishes${restaurantIndex}"></div>  
             <div class="bottom_space"></div>
         </div>
-    `    
+    `;    
 }
 
 function getRenderDishTemplate(restaurantIndex, dishesIndex) {
@@ -63,7 +63,7 @@ function getRenderDishTemplate(restaurantIndex, dishesIndex) {
                 <img onclick="addDish(${restaurantIndex}, ${dishesIndex})" src="./assets/icons/add-svgrepo-com.svg" alt="">
             </div>
         </div>
-    `
+    `;
 }
 
 function getRenderEmptyBasketTemplate() {
@@ -71,25 +71,61 @@ function getRenderEmptyBasketTemplate() {
         <div class="basket_head">
             <h2>Warenkorb</h2>
         </div>
-        <div id="basket_content" class="basket_content">
-            <div id="basket_empty" class="basket_empty">
-                <p>dein Warenkorb ist noch leer</p>
+        <div class="basket_border">
+            <div id="basket_content" class="basket_content">
+                <div id="basket_empty" class="basket_empty">
+                    <p>dein Warenkorb ist noch leer</p>
+                </div>
+            </div>
+            <div>
+                <div id="calculated_sum" class="basket_bottom">
+                </div>
             </div>
         </div> 
-    `
+    `;
 }
-function getRenderFilledBasketTemplate(restaurantIndex, dishesIndex) {
+
+function getRenderBasketTemplate(restaurantIndex, dishesIndex) {
     return /*html*/`
-        <div class="basket_dish">
-            <p>${myDishes[restaurantIndex].dishes[dishesIndex].name}</p>
-            <div class="basket_edit">
-                <img class="basket_buttons" onclick="subDish(${restaurantIndex}, ${dishesIndex})" src="assets/icons/minus-svgrepo-com.svg" alt="">
-                <div id="counter${dishesIndex}">${myDishes[restaurantIndex].dishes[dishesIndex].amount}</div>
-                <img class="basket_buttons" onclick="addDish(${restaurantIndex}, ${dishesIndex})" src="./assets/icons/add-svgrepo-com.svg" alt=""> 
+        <div id="basket_dish${dishesIndex}" class="basket_dish">
+            <p class="basket_dish_title" >${myDishes[restaurantIndex].dishes[dishesIndex].name}</p>
+            <div class="basket_dish_edit">
+                <div class="basket_dish_counter">
+                    <img class="basket_buttons" onclick="subDish(${restaurantIndex}, ${dishesIndex})" src="assets/icons/minus-svgrepo-com.svg" alt="">
+                    <div id="counter${dishesIndex}">${myDishes[restaurantIndex].dishes[dishesIndex].amount}</div>
+                    <img class="basket_buttons" onclick="addDish(${restaurantIndex}, ${dishesIndex})" src="./assets/icons/add-svgrepo-com.svg" alt=""> 
+                </div>
+                    <div class="basket_dish_result">
+                    <div id="price_result${dishesIndex}"></div>
+                    <img onclick="deleteDish(${restaurantIndex}, ${dishesIndex})" class="basket_buttons" src="assets/icons/trash-svgrepo-com.svg" alt="">
+                </div>
             </div>
         </div>
-    `
-}    
+    `;
+} 
+
+function getRenderCalculatedSumTemplate(calculatedSum) {
+    return /*html*/`
+    <div class="basket_sum">
+        <p>Zwischensumme</p>
+        <div>
+            ${calculatedSum.toFixed(2)} €
+        </div>
+    </div>
+    <div class="basket_sum">
+        <p>Lieferkosten</p>
+        <div>
+            <p>0 €</p>
+        </div>
+    </div>
+    <div class="basket_sum">
+        <p>Gesamtsumme</p>
+        <div>
+            <p class="price">${calculatedSum.toFixed(2)} €</p>
+        </div>
+    </div>
+`;
+}
 
 function getRenderRespMenuTemplate() {
     return /*html*/`
@@ -107,7 +143,7 @@ function getRenderRespMenuTemplate() {
         <div class="resp_menu_separator">
             <h3 onclick="renderRestaurantSelection()">Übersicht</h3>  
         </div>
-    `
+    `;
 }
 
 

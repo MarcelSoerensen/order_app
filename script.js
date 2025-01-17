@@ -17,6 +17,7 @@ function renderRestaurantSelection() {
 function renderOrderSection() {
     let orderRestaurantRef = document.getElementById('order_section');
     orderRestaurantRef.innerHTML = "";
+
     for (let restaurantIndex = 0; restaurantIndex < myDishes.length; restaurantIndex++) {
         orderRestaurantRef.innerHTML += getRenderOrderRestaurantTemplate(restaurantIndex);
             
@@ -77,52 +78,98 @@ function addDish(restaurantIndex, dishesIndex) {
     myDishes[restaurantIndex].dishes[dishesIndex].amount++;
     let basketContentRef = document.getElementById('basket_content');
     let deleteEmptyBasketRef = document.getElementById('basket_empty');
-    
+
         if (myDishes[restaurantIndex].dishes[dishesIndex].amount == 1) {
             deleteEmptyBasketRef.classList.add('d_none');
-            basketContentRef.innerHTML += getRenderFilledBasketTemplate(restaurantIndex, dishesIndex);
+            basketContentRef.innerHTML += getRenderBasketTemplate(restaurantIndex, dishesIndex);
         }
 
     renderCounter(restaurantIndex, dishesIndex);
+    renderCalculatedPrice(restaurantIndex, dishesIndex);
+    renderCalculatedSum();
     console.log(myDishes[restaurantIndex].dishes[dishesIndex].name);
-    console.log(myDishes[restaurantIndex].dishes[dishesIndex].price);
     console.log(myDishes[restaurantIndex].dishes[dishesIndex].amount);
+    console.log(myDishes[restaurantIndex].dishes[dishesIndex].calculatedPrice);
 }
 
 function subDish(restaurantIndex, dishesIndex) {
-    myDishes[restaurantIndex].dishes[dishesIndex].amount--;
+    let basketContentRef = document.getElementById(`basket_dish${dishesIndex}`);
     let counterRef = document.getElementById(`counter${dishesIndex}`);
+    let calculatedPriceRef = document.getElementById(`price_result${dishesIndex}`);
+
+        if (myDishes[restaurantIndex].dishes[dishesIndex].amount >= 1) {
+            myDishes[restaurantIndex].dishes[dishesIndex].amount--;
+        }
+        if (myDishes[restaurantIndex].dishes[dishesIndex].amount === 0) {
+            myDishes[restaurantIndex].dishes[dishesIndex].calculatedPrice = 0;
+            basketContentRef.remove() && counterRef.remove() && calculatedPriceRef.remove();
+        }
+    
     counterRef.innerHTML = myDishes[restaurantIndex].dishes[dishesIndex].amount;
-    getRenderFilledBasketTemplate(restaurantIndex, dishesIndex)
+    getRenderBasketTemplate(restaurantIndex, dishesIndex);
+    renderCalculatedPrice(restaurantIndex, dishesIndex);
+    renderCalculatedSum();
     
     
-renderCounter(restaurantIndex, dishesIndex);
+    
     console.log(myDishes[restaurantIndex].dishes[dishesIndex].name);
-    console.log(myDishes[restaurantIndex].dishes[dishesIndex].price);
     console.log(myDishes[restaurantIndex].dishes[dishesIndex].amount);
+    console.log(myDishes[restaurantIndex].dishes[dishesIndex].calculatedPrice);
+}
+
+function deleteDish(restaurantIndex, dishesIndex) {
+    let basketContentRef = document.getElementById(`basket_dish${dishesIndex}`);
+    let counterRef = document.getElementById(`counter${dishesIndex}`);
+    
+    if (myDishes[restaurantIndex].dishes[dishesIndex].calculatedPrice !== 0) {
+        myDishes[restaurantIndex].dishes[dishesIndex].amount = 0;
+        myDishes[restaurantIndex].dishes[dishesIndex].calculatedPrice = 0;
+    }
+
+    console.log(myDishes[restaurantIndex].dishes[dishesIndex].amount);
+    console.log(myDishes[restaurantIndex].dishes[dishesIndex].calculatedPrice);
+    basketContentRef.remove();
+    counterRef.remove();
+    
+    renderCalculatedSum();
 }
 
 function renderCounter(restaurantIndex, dishesIndex) {
-    let counterRef = document.getElementById(`counter${dishesIndex}`);
+    let counterRef = document.getElementById(`counter${dishesIndex}`);   
     counterRef.innerHTML = myDishes[restaurantIndex].dishes[dishesIndex].amount;
-        getRenderFilledBasketTemplate(restaurantIndex, dishesIndex);
-
+    getRenderBasketTemplate(restaurantIndex, dishesIndex);
 }
 
+function renderCalculatedPrice(restaurantIndex, dishesIndex) {
+    let resultRef = document.getElementById(`price_result${dishesIndex}`);
+    let amountRef = myDishes[restaurantIndex].dishes[dishesIndex].amount;
+    let priceRef = myDishes[restaurantIndex].dishes[dishesIndex].price;
+    
+    if (resultRef !== null) {
+        myDishes[restaurantIndex].dishes[dishesIndex].calculatedPrice = priceRef * amountRef;
+        resultRef.innerHTML = myDishes[restaurantIndex].dishes[dishesIndex].calculatedPrice.toFixed(2) + " €"; 
+    }
+
+    renderCalculatedSum();
+}
+
+function renderCalculatedSum() {
+    let calculatedSum = 0;
+    let calculatedSumRef = document.getElementById('calculated_sum');
+    for (let sumRestaurantIndex = 0; sumRestaurantIndex < myDishes.length; sumRestaurantIndex++) {
+        for (let sumDishesIndex = 0; sumDishesIndex < myDishes[sumRestaurantIndex].dishes.length; sumDishesIndex++) {
+            let dish = myDishes[sumRestaurantIndex].dishes[sumDishesIndex]  
+            if (dish.calculatedPrice >= 1) {
+                calculatedSum += dish.calculatedPrice;
+                calculatedSumRef.innerHTML = getRenderCalculatedSumTemplate(calculatedSum)
+            }
+        }
+    } 
+}
 
 function renderEmptyBasket() {
     let emptyBasketRef = document.getElementById('basket');
     emptyBasketRef.innerHTML = getRenderEmptyBasketTemplate();
-}
-
-function renderFilledBasket() {
-    
-    
-    
-    
-    
-    
-    
 }
 
 function toggleBasket() {
